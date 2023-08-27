@@ -13,8 +13,8 @@
             <ColumnDefinition Width="15*"/>
             <ColumnDefinition Width="276*"/>
         </Grid.ColumnDefinitions>
-        
-         <Label 
+
+        <Label 
             Grid.Column="1" 
             Content="To-Do Lists" 
             HorizontalAlignment="Left" 
@@ -25,7 +25,7 @@
             FontSize="20" 
             FontFamily="MV Boli"
           />
-        
+
         <Button 
             x:Name="Btn1" 
             Grid.Column="1" 
@@ -37,7 +37,7 @@
             FontSize="15" 
             Click="Button_Click" 
             RenderTransformOrigin="-0.108,1.831"/>
-        
+
         <ListBox x:Name="TaskListBox" Grid.ColumnSpan="4" Margin="61,150,73,78" RenderTransformOrigin="0.5,0.5" FontFamily="MV Boli" FontSize="15">
             <ListBox.RenderTransform>
                 <TransformGroup>
@@ -48,7 +48,7 @@
                 </TransformGroup>
             </ListBox.RenderTransform>
         </ListBox>
-        
+
         <TextBox 
             x:Name="TextInput" 
             Grid.Column="1" 
@@ -61,22 +61,21 @@
             Grid.ColumnSpan="3" 
             Height="43"
           />
-        
+
         <Label 
             x:Name="WarningAddT" 
-            Grid.Column="1" 
             Content="" 
             HorizontalAlignment="Left" 
-            Margin="113,68,0,0" 
+            Margin="77,110,0,0" 
             VerticalAlignment="Top" 
-            Grid.ColumnSpan="3" 
+            Grid.ColumnSpan="2" 
             Width="269" 
             Height="35" 
             FontFamily="MV Boli" 
             FontSize="15" 
             FontWeight="Bold" 
             RenderTransformOrigin="0.47,0.569"/>
-        
+
         <Button 
             x:Name="removeBtn" 
             Grid.Column="1" 
@@ -88,13 +87,12 @@
             Width="90" Height="28" 
             FontFamily="MV Boli" 
             Click="removeBtn_Click"/>
-        
+
         <Label 
             x:Name="WarningRemoveT" 
-            Grid.Column="1" 
             Content="" 
             HorizontalAlignment="Left" 
-            Margin="113,313,0,0" 
+            Margin="115,371,0,0" 
             VerticalAlignment="Top" 
             RenderTransformOrigin="-1.552,0.495" 
             Grid.ColumnSpan="2" 

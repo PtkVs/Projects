@@ -31,30 +31,35 @@ namespace To_DoLists
             TextInput.Focus();
         }
         private int taskCount = 1;
+       
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             string taskText = TextInput.Text.Trim();
-            
-            
+
+
+
+
+            if (!string.IsNullOrEmpty(taskText))
+            {
+                string numberdTask = $"{taskCount}. {taskText}"; //Bullet or Number Prepare gareko
+                TaskListBox.Items.Add(numberdTask);
+                TextInput.Clear();
+                TextInput.Focus();
+                taskCount++;
+                WarningAddT.Content = string.Empty;
+                
+            }
+            else
+            {
+                string warn = "Please Enter A Task.";
+                WarningAddT.Content = warn;         
+                TextInput.Focus();
+                
+            }
 
            
-                if (!string.IsNullOrEmpty(taskText))
-                {
-                    string numberdTask = $"{taskCount}. {taskText}"; //Bullet or Number Prepare gareko
-                    TaskListBox.Items.Add(numberdTask);
-                    TextInput.Clear();
-                    TextInput.Focus();
-                taskCount++;
-                }
-                else
-                {
-                    string warn = "Please Enter A Task.";
-                    WarningAddT.ToolTip = warn;
-                   WarningAddT.Visibility = Visibility.Visible;
-                    TextInput.Focus() ;
-                
 
-                }        
+                    
            
         }
 
@@ -63,12 +68,13 @@ namespace To_DoLists
             if (TaskListBox.SelectedItem != null)
             {
                 TaskListBox.Items.Remove(TaskListBox.SelectedItem);
+                WarningRemoveT.Content = string.Empty;
             }
             else
             {
                 string warn = "No Task Selected.";
-                WarningRemoveT.ToolTip = warn;
-                //WarningRemoveT.Visibility = Visibility.Visible;
+                WarningRemoveT.Content = warn;
+               
 
             }
         }
