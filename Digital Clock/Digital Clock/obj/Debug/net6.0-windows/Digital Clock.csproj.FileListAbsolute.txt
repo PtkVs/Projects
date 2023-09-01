@@ -1,0 +1,17 @@
+C:\Users\!sick\Documents\GitHub\Projects\Digital Clock\Digital Clock\bin\Debug\net6.0-windows\Digital Clock.exe
+C:\Users\!sick\Documents\GitHub\Projects\Digital Clock\Digital Clock\bin\Debug\net6.0-windows\Digital Clock.deps.json
+C:\Users\!sick\Documents\GitHub\Projects\Digital Clock\Digital Clock\bin\Debug\net6.0-windows\Digital Clock.runtimeconfig.json
+C:\Users\!sick\Documents\GitHub\Projects\Digital Clock\Digital Clock\bin\Debug\net6.0-windows\Digital Clock.dll
+C:\Users\!sick\Documents\GitHub\Projects\Digital Clock\Digital Clock\bin\Debug\net6.0-windows\Digital Clock.pdb
+C:\Users\!sick\Documents\GitHub\Projects\Digital Clock\Digital Clock\obj\Debug\net6.0-windows\Digital Clock.csproj.AssemblyReference.cache
+C:\Users\!sick\Documents\GitHub\Projects\Digital Clock\Digital Clock\obj\Debug\net6.0-windows\Digital_Clock.DigitalClock.resources
+C:\Users\!sick\Documents\GitHub\Projects\Digital Clock\Digital Clock\obj\Debug\net6.0-windows\Digital Clock.csproj.GenerateResource.cache
+C:\Users\!sick\Documents\GitHub\Projects\Digital Clock\Digital Clock\obj\Debug\net6.0-windows\Digital Clock.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\!sick\Documents\GitHub\Projects\Digital Clock\Digital Clock\obj\Debug\net6.0-windows\Digital Clock.AssemblyInfoInputs.cache
+C:\Users\!sick\Documents\GitHub\Projects\Digital Clock\Digital Clock\obj\Debug\net6.0-windows\Digital Clock.AssemblyInfo.cs
+C:\Users\!sick\Documents\GitHub\Projects\Digital Clock\Digital Clock\obj\Debug\net6.0-windows\Digital Clock.csproj.CoreCompileInputs.cache
+C:\Users\!sick\Documents\GitHub\Projects\Digital Clock\Digital Clock\obj\Debug\net6.0-windows\Digital Clock.dll
+C:\Users\!sick\Documents\GitHub\Projects\Digital Clock\Digital Clock\obj\Debug\net6.0-windows\refint\Digital Clock.dll
+C:\Users\!sick\Documents\GitHub\Projects\Digital Clock\Digital Clock\obj\Debug\net6.0-windows\Digital Clock.pdb
+C:\Users\!sick\Documents\GitHub\Projects\Digital Clock\Digital Clock\obj\Debug\net6.0-windows\Digital Clock.genruntimeconfig.cache
+C:\Users\!sick\Documents\GitHub\Projects\Digital Clock\Digital Clock\obj\Debug\net6.0-windows\ref\Digital Clock.dll

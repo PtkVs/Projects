@@ -91,7 +91,7 @@
             FormBorderStyle = FormBorderStyle.None;
             Name = "DigitalClock";
             Text = "DigitalClock";
-            Load += DigitalClock_Load;
+           
             ResumeLayout(false);
             PerformLayout();
         }
