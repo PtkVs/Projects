@@ -5,7 +5,8 @@
     <TargetFramework>net6.0-windows</TargetFramework>
     <RootNamespace>Digital_Clock</RootNamespace>
     <Nullable>enable</Nullable>
-    <UseWPF>true</UseWPF>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
 </Project>
