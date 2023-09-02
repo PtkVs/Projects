@@ -18,8 +18,7 @@ namespace Digital_Clock
             myTimer.Elapsed += TimerElapsed;
             myTimer.Start();
 
-            string myTime = DateTime.Now.ToLongTimeString();
-            labelTime.Text = myTime;
+           
 
 
         }
@@ -28,8 +27,11 @@ namespace Digital_Clock
 
         private void TimerElapsed(object? sender, ElapsedEventArgs e)
         {
-            string time = DateTime.Now.ToLongTimeString();           
-            labelTime.Text = time;
+            string time = DateTime.Now.ToLongTimeString();
+
+            this.Invoke((MethodInvoker)delegate { labelTime.Text = time; });   //other method is to use the timer from toolbox too
+            
+
         }
 
        
