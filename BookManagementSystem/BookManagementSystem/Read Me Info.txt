@@ -1,0 +1,2 @@
+Visual Studio 2012
+Sql Server 2008 R2 Management Studio

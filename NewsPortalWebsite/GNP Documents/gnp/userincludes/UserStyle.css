@@ -1,0 +1,107 @@
+//* CSS Document */
+
+body{
+	
+	width:100%;
+	font:14px "Comic Sans MS","Times New Roman", Times, serif, Verdana, Arial, san-serif;
+		
+}
+
+.container
+{
+	margin: auto;
+	
+	width: auto;
+	overflow:;
+	
+	
+}
+/*for header*/
+header{
+	width:auto;
+	height:20%;
+	overflow:hidden; 
+	
+}
+	nav{
+	
+	height:35px;
+	width:100%;
+	overflow:hidden;
+	background-color:#999;
+	margin:0px 0px 0px;
+	padding-left:10px;
+	padding-bottom:10px;
+	}
+		.navigation ul{
+				
+			padding: 0px;
+			margin-bottom: 8px;
+			border-right:1px #900;
+		}
+		.navigation ul li{
+			list-style:none;
+			display:inline;
+			margin-right:5px;	
+			
+		}
+		
+		.navigation ul li a{
+			
+			background-color:;
+			text-decoration:none;
+			color:#000;
+			
+			font-size:16px;
+		
+		
+		}		
+			
+		.navigation ul a:hover{
+			
+			border-bottom: 2px solid #FF0000;	
+				
+		}
+		
+/*for footer*/
+footer{
+	clear:both;
+	width:inherit;
+	height:10px;
+	
+}
+	footer p{
+		text-align:center;
+	}
+/*for main content*/
+.content{
+	
+	width:100%;
+	background-color:#FF9;
+	height:410px;
+	padding:10px;
+	overflow:auto;
+	
+	
+}
+
+table{
+	background: white;
+	font-color:white;
+}
+
+/*for editting*/
+.editting {
+	float:right;
+	overflow:auto; 	
+}
+.viewing {
+	float:center;
+	height: 100%;
+	overflow:auto;
+	align:center;
+	
+}
+textarea {
+     overflow: hidden;
+}
