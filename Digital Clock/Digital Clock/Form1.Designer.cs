@@ -28,10 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             labelTime = new Label();
             labelYM = new Label();
             labelDay = new Label();
             labelDate = new Label();
+            timer = new System.Windows.Forms.Timer(components);
             SuspendLayout();
             // 
             // labelTime
@@ -78,6 +80,11 @@
             labelDate.TabIndex = 3;
             labelDate.Text = "Date";
             // 
+            // timer
+            // 
+            timer.Interval = 1000;
+            timer.Tick += timer_Tick;
+            // 
             // DigitalClock
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -91,7 +98,6 @@
             FormBorderStyle = FormBorderStyle.None;
             Name = "DigitalClock";
             Text = "DigitalClock";
-           
             ResumeLayout(false);
             PerformLayout();
         }
@@ -102,5 +108,6 @@
         private Label labelYM;
         private Label labelDay;
         private Label labelDate;
+        private System.Windows.Forms.Timer timer;
     }
 }

@@ -12,29 +12,43 @@ namespace Digital_Clock
         {
             InitializeComponent();
 
-           
 
-            System.Timers.Timer myTimer = new System.Timers.Timer(1000);
-            myTimer.Elapsed += TimerElapsed;
-            myTimer.Start();
+            timer.Start();
 
-           
+            /*  System.Timers.Timer myTimer = new System.Timers.Timer(1000);
+              myTimer.Elapsed += TimerElapsed;
+              myTimer.Start();
+            */
+
+
+
+
 
 
         }
 
-       
-
-        private void TimerElapsed(object? sender, ElapsedEventArgs e)
+        //with timer tool 
+        private void timer_Tick(object sender, EventArgs e)
         {
-            string time = DateTime.Now.ToLongTimeString();
-
-            this.Invoke((MethodInvoker)delegate { labelTime.Text = time; });   //other method is to use the timer from toolbox too
-            
+            labelTime.Text = DateTime.Now.ToLongTimeString();
+            labelYM.Text = DateTime.Now.ToString("yyyy MMM");
+            labelDate.Text = DateTime.Now.ToString("dd");
+            labelDay.Text = DateTime.Now.ToString("ddd");
 
         }
 
-       
+
+        //without timer tool hardcoded 
+        /* private void TimerElapsed(object? sender, ElapsedEventArgs e)
+         {
+             string time = DateTime.Now.ToLongTimeString();
+
+             this.Invoke((MethodInvoker)delegate { labelTime.Text = time; });   //other method is to use the timer from toolbox too
+
+
+         }
+        */
+
     }
 }
 
