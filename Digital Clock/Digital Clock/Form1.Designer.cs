@@ -82,8 +82,7 @@
             // 
             // timer
             // 
-            timer.Interval = 1000;
-            timer.Tick += timer_Tick;
+            
             // 
             // DigitalClock
             // 
