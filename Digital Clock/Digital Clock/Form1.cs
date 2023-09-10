@@ -1,5 +1,3 @@
-using System.Timers;
-
 namespace Digital_Clock
 
 {
@@ -9,15 +7,17 @@ namespace Digital_Clock
         {
             InitializeComponent();
 
-            // timer.Start();
+            timer.Start();
 
+            /*
             System.Timers.Timer myTimer = new System.Timers.Timer(1000);
             myTimer.Elapsed += TimerElapsed;
             myTimer.Start();
+            */
         }
 
         //with timer tool
-        /*
+
         private void timer_Tick(object sender, EventArgs e)
         {
             labelTime.Text = DateTime.Now.ToLongTimeString();
@@ -25,10 +25,9 @@ namespace Digital_Clock
             labelDate.Text = DateTime.Now.ToString("dd");
             labelDay.Text = DateTime.Now.ToString("ddd");
         }
-        */
 
         //without timer tool hardcoded
-
+        /*
         private void TimerElapsed(object? sender, ElapsedEventArgs e)
         {
             string time = DateTime.Now.ToLongTimeString();
@@ -41,6 +40,7 @@ namespace Digital_Clock
             this.Invoke((MethodInvoker)delegate { labelDate.Text = date; });
             this.Invoke((MethodInvoker)delegate { labelDay.Text = day; });
         }
+        */
     }
 }
 
