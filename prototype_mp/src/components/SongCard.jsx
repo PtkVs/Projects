@@ -27,7 +27,7 @@ export default SongCard;
 
 const styles = StyleSheet.create({
   container: {
-    height: 200,
+    height: 300,
     width: 190,
   },
 

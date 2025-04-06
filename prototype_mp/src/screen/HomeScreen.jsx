@@ -11,7 +11,13 @@ const HomeScreen = () => {
   return (
     <View style={styles.container}>
       <Header></Header>
-      <SongCardWithCategory />
+      <FlatList
+        data={[1, 2, 3, 4, 5]}
+        renderItem={SongCardWithCategory}
+        contentContainerStyle={{
+          paddingBottom: 200,
+        }}
+      />
     </View>
   );
 };
