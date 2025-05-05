@@ -10,22 +10,54 @@ import {
 } from '../components/PlayerControls';
 import {useSharedValue} from 'react-native-reanimated';
 import {Slider} from 'react-native-awesome-slider';
+import MovingText from './MovingText';
+import {useNavigation} from '@react-navigation/native';
 
 const imageUrl =
   'https://linkstorage.linkfire.com/medialinks/images/8b14b1ae-c3ea-4484-a654-3bab3a07ddea/artwork-440x440.jpg';
 const FloatingPlayer = () => {
+  const navigation = useNavigation();
   const progress = useSharedValue(30);
   const min = useSharedValue(0);
   const max = useSharedValue(100);
+
+  const handleOpenPlayerScreen = () => {
+    navigation.navigate('PLAYER_SCREEN');
+  };
+  // useNavigation is a hook that returns the navigation object. It is used to navigate between screens.
+
   return (
     <View>
-      <View>
-        <Slider progress={progress} minimumValue={min} maximumValue={max} />
+      {/* Slider Section */}
+      <View style={{zIndex: 1}}>
+        {/*  zIndex is needed to make the slider visible */}
+        <Slider
+          style={styles.sliderContainer}
+          progress={progress}
+          minimumValue={min}
+          maximumValue={max}
+          theme={{
+            minimumTrackTintColor: colors.minimumTintColor,
+            maximumTrackTintColor: colors.maximumTintColor,
+            bubbleBackgroundColor: colors.maximumTintColor,
+          }}
+          // containerStyle={{height: 20}} //containerStyle le chai slider kati ko thick banaune vanera use garinxa(see docementation of awesome slider)
+        />
       </View>
-      <TouchableOpacity style={styles.container} activeOpacity={0.7}>
+
+      {/* Player Controls Section */}
+      <TouchableOpacity
+        style={styles.container}
+        activeOpacity={0.7}
+        onPress={handleOpenPlayerScreen}>
         <Image source={{uri: imageUrl}} style={styles.coverImage} />
         <View style={styles.titleContainer}>
-          <Text style={styles.title}>Rick and Morty</Text>
+          <MovingText
+            text={'Rick and Morty and Pratik '}
+            animationThreshold={15}
+            style={styles.title}
+          />
+
           <Text style={styles.artist}>Nicklodian</Text>
         </View>
         <View style={styles.playerControlContainer}>
@@ -46,6 +78,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingBottom: spacing.md,
   },
+  sliderContainer: {
+    width: 200,
+    height: 20,
+    marginTop: spacing.md,
+  },
   coverImage: {
     width: 70,
     height: 70,
@@ -53,6 +90,9 @@ const styles = StyleSheet.create({
   titleContainer: {
     flex: 1,
     paddingHorizontal: spacing.md,
+    overflow: 'hidden',
+    marginLeft: spacing.sm,
+    marginRight: spacing.sm,
   },
   title: {
     color: colors.textPrimary,

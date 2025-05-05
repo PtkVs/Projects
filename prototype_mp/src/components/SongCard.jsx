@@ -13,12 +13,17 @@ import {fontSizes, spacing} from '../constants/dimensions';
 
 const imageUrl =
   'https://ncsmusic.s3.eu-west-1.amazonaws.com/tracks/000/001/864/325x325/all-or-nothing-1742259654-EKtAHFBDZm.png';
-const SongCard = () => {
+const SongCard = ({containerStyle, imageStyle}) => {
   return (
-    <TouchableOpacity style={styles.container}>
-      <Image source={{uri: imageUrl}} style={styles.coverImage} />
-      <Text style={styles.title}>All or Nothing</Text>
-      <Text style={styles.artist}> by The Beatles</Text>
+    <TouchableOpacity style={[styles.container, containerStyle]}>
+      <Image source={{uri: imageUrl}} style={[styles.coverImage, imageStyle]} />
+      <Text style={styles.title} numberOfLines={1}>
+        All or Nothing
+      </Text>
+      <Text style={styles.artist} numberOfLines={1}>
+        {' '}
+        by The Beatles
+      </Text>
     </TouchableOpacity>
   );
 };
@@ -26,14 +31,11 @@ const SongCard = () => {
 export default SongCard;
 
 const styles = StyleSheet.create({
-  container: {
-    height: 300,
-    width: 190,
-  },
+  container: {},
 
   coverImage: {
-    width: 200,
-    height: 200,
+    width: 175,
+    height: 190,
     borderRadius: 10,
   },
 
