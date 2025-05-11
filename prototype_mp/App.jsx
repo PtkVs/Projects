@@ -1,26 +1,24 @@
 import {StyleSheet, Text, View} from 'react-native';
-import React from 'react';
+import React, {useEffect} from 'react';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import HomeScreen from './src/screen/HomeScreen';
-import LikeScreen from './src/screen/LikeScreen';
-import PlayerScreen from './src/screen/PlayerScreen';
+import StackNavigation from './src/navigation/StackNavigation';
+import DrawerNavigator from './src/navigation/DrawerNavigator';
+import TrackPlayer from 'react-native-track-player';
+import {useSetupTrackPlayer} from './src/hooks/useSetupTrackPlayer';
 
-const Stack = createNativeStackNavigator();
 const App = () => {
+  const onLoad = () => {
+    console.log('TrackPlayer loaded');
+  };
+  useSetupTrackPlayer(onLoad);
+
   return (
     <GestureHandlerRootView style={{flex: 1}}>
       <NavigationContainer>
-        <Stack.Navigator
-          screenOptions={{headerShown: false}}
-          initialRouteName="PLAYER_SCREEN">
-          {/* initialRouteName is the name of the screen that will be rendered first  and is used mostly for developing purposes*/}
+        {/*<StackNavigation /> */}
 
-          <Stack.Screen name="HOME_SCREEN" component={HomeScreen} />
-          <Stack.Screen name="LIKE_SCREEN" component={LikeScreen} />
-          <Stack.Screen name="PLAYER_SCREEN" component={PlayerScreen} />
-        </Stack.Navigator>
+        <DrawerNavigator />
       </NavigationContainer>
     </GestureHandlerRootView>
   );

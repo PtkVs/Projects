@@ -10,19 +10,27 @@ import React from 'react';
 import {colors} from '../constants/color';
 import {fontFamilies} from '../constants/fonts';
 import {fontSizes, spacing} from '../constants/dimensions';
+import TrackPlayer from 'react-native-track-player';
 
 const imageUrl =
   'https://ncsmusic.s3.eu-west-1.amazonaws.com/tracks/000/001/864/325x325/all-or-nothing-1742259654-EKtAHFBDZm.png';
-const SongCard = ({containerStyle, imageStyle}) => {
+const SongCard = ({item, containerStyle, imageStyle, handlePlay}) => {
   return (
-    <TouchableOpacity style={[styles.container, containerStyle]}>
-      <Image source={{uri: imageUrl}} style={[styles.coverImage, imageStyle]} />
+    <TouchableOpacity
+      style={[styles.container, containerStyle]}
+      onPress={() => handlePlay(item)}>
+      <Image
+        source={{uri: item.artwork}}
+        style={[styles.coverImage, imageStyle]}
+      />
+      {/* {item?.title and item.title its same } */}
+      {/*If item exists, it returns item.title. If item is undefined or null, it returns undefined without throwing an error. so its a safe way to access properties in objects that might not be loaded or availabe yet which prevents from crashing app*/}
       <Text style={styles.title} numberOfLines={1}>
-        All or Nothing
+        {item?.title}
       </Text>
+
       <Text style={styles.artist} numberOfLines={1}>
-        {' '}
-        by The Beatles
+        {item.artist}
       </Text>
     </TouchableOpacity>
   );

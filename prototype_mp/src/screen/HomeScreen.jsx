@@ -7,13 +7,15 @@ import {fontSizes, spacing} from '../constants/dimensions';
 import SongCard from '../components/SongCard';
 import SongCardWithCategory from '../components/SongCardWithCategory';
 import FloatingPlayer from '../components/FloatingPlayer';
+import {songsWithCategory} from '../data/songsWithCategory';
 
 const HomeScreen = () => {
   return (
     <View style={styles.container}>
       <Header></Header>
+      {/* Yo flatlist is main vertical(parent container) rendering component like container which contains all other sub(child container) rendering containers */}
       <FlatList
-        data={[1, 2, 3, 4, 5]}
+        data={songsWithCategory}
         renderItem={SongCardWithCategory}
         contentContainerStyle={{
           paddingBottom: 200,

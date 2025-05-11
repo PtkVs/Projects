@@ -9,6 +9,11 @@ import {fontFamilies} from '../constants/fonts';
 import PlayerRepeatToggle from '../components/PlayerRepeatToggle';
 import PlayerShuffleToggle from '../components/PlayerShuffleToggle';
 import PlayerProgressBar from '../components/PlayerProgressBar';
+import {
+  NextButton,
+  PlayPauseButton,
+  PreviousButton,
+} from '../components/PlayerControls';
 
 const imageUrl =
   'https://ncsmusic.s3.eu-west-1.amazonaws.com/tracks/000/001/805/325x325/your-burn-1731978054-rhCAZVNaIC.png';
@@ -72,8 +77,13 @@ const PlayerScreen = () => {
       </View>
 
       {/* Player Progress Bar */}
-      <View>
-        <PlayerProgressBar />
+      <PlayerProgressBar />
+
+      {/* Play and Pause Button */}
+      <View style={styles.playPauseContainer}>
+        <PreviousButton />
+        <PlayPauseButton />
+        <NextButton />
       </View>
     </View>
   );
@@ -144,5 +154,12 @@ const styles = StyleSheet.create({
   shuffleANDrepeatButton: {
     flexDirection: 'row',
     gap: spacing.xl,
+  },
+  playPauseContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    gap: spacing.xl,
+    padding: spacing.xl,
   },
 });
