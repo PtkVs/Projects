@@ -1,6 +1,6 @@
 // *******ORIGINAL CODE********** */
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import React from 'react';
+import React, {use} from 'react';
 import {colors} from '../constants/color';
 import {fontSizes, spacing} from '../constants/dimensions';
 import {fontFamilies} from '../constants/fonts';
@@ -13,10 +13,14 @@ import {useSharedValue} from 'react-native-reanimated';
 import {Slider} from 'react-native-awesome-slider';
 import MovingText from './MovingText';
 import {useNavigation} from '@react-navigation/native';
+import {useActiveTrack} from 'react-native-track-player';
+import PlayerProgressBar from '../components/PlayerProgressBar';
 
 const imageUrl =
   'https://linkstorage.linkfire.com/medialinks/images/8b14b1ae-c3ea-4484-a654-3bab3a07ddea/artwork-440x440.jpg';
 const FloatingPlayer = () => {
+  const activeTrack = useActiveTrack();
+
   const navigation = useNavigation();
   const progress = useSharedValue(30);
   const min = useSharedValue(0);
@@ -29,9 +33,9 @@ const FloatingPlayer = () => {
 
   return (
     <View>
-      {/* Slider Section */}
+      {/* Slider Section  this is og player section */}
       <View style={{zIndex: 1}}>
-        {/*  zIndex is needed to make the slider visible */}
+        {/* zIndex is needed to make the slider visible
         <Slider
           style={styles.sliderContainer}
           progress={progress}
@@ -43,7 +47,9 @@ const FloatingPlayer = () => {
             bubbleBackgroundColor: colors.maximumTintColor,
           }}
           // containerStyle={{height: 20}} //containerStyle le chai slider kati ko thick banaune vanera use garinxa(see docementation of awesome slider)
-        />
+        /> */}
+
+        <PlayerProgressBar />
       </View>
 
       {/* Player Controls Section */}
@@ -51,15 +57,33 @@ const FloatingPlayer = () => {
         style={styles.container}
         activeOpacity={0.7}
         onPress={handleOpenPlayerScreen}>
-        <Image source={{uri: imageUrl}} style={styles.coverImage} />
+        {/*ternary operator use gareko to check artwork i.e is artwork valid if true then use artwork if not display nothing null is passed */}
+        {activeTrack?.artwork ? (
+          <Image
+            source={{uri: activeTrack.artwork}}
+            style={styles.coverImage}
+          />
+        ) : null}
+
+        {/* yeha pani ternary operator use garna sakinxa */}
+        {/*{activeTrack ? (
+  <View style={styles.titleContainer}>
+    <MovingText
+      text={activeTrack.title}
+      animationThreshold={15}
+      style={styles.title}
+    />
+    <Text style={styles.artist}>{activeTrack.artist}</Text>
+  </View>
+) : null}*/}
         <View style={styles.titleContainer}>
           <MovingText
-            text={'Rick and Morty and Pratik '}
+            text={activeTrack?.title || 'Song Title'}
             animationThreshold={15}
             style={styles.title}
           />
 
-          <Text style={styles.artist}>Nicklodian</Text>
+          <Text style={styles.artist}>{activeTrack?.artist}</Text>
         </View>
         <View style={styles.playerControlContainer}>
           <PreviousButton />

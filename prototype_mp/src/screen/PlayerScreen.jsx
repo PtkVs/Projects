@@ -14,11 +14,15 @@ import {
   PlayPauseButton,
   PreviousButton,
 } from '../components/PlayerControls';
+import {useActiveTrack} from 'react-native-track-player';
 
 const imageUrl =
   'https://ncsmusic.s3.eu-west-1.amazonaws.com/tracks/000/001/805/325x325/your-burn-1731978054-rhCAZVNaIC.png';
 
 const PlayerScreen = () => {
+  //for using the active image of the playing
+  const activeTrack = useActiveTrack();
+
   const isLiked = false;
   const isMute = false;
   return (
@@ -38,15 +42,17 @@ const PlayerScreen = () => {
 
       {/* Cover Image */}
       <View style={styles.coverImageContainer}>
-        <Image source={{uri: imageUrl}} style={styles.coverImage}></Image>
+        <Image
+          source={{uri: activeTrack?.artwork}}
+          style={styles.coverImage}></Image>
       </View>
 
       {/* Heart/Like Button, Atist and Ttle here */}
       <View style={styles.bodyContainer}>
         {/* Title and Artist */}
         <View style={styles.titleContainer}>
-          <Text style={styles.songTitle}> Burn </Text>
-          <Text style={styles.artistName}> Pretty Me </Text>
+          <Text style={styles.songTitle}> {activeTrack?.title} </Text>
+          <Text style={styles.artistName}> {activeTrack?.artist} </Text>
         </View>
         {/* Heart Button */}
         <TouchableOpacity>
