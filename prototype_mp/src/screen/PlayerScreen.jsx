@@ -1,8 +1,9 @@
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Feather from 'react-native-vector-icons/Feather';
+import Entypo from 'react-native-vector-icons/Entypo';
 import {colors} from '../constants/color';
 import {fontSizes, iconSizes, spacing} from '../constants/dimensions';
 import {fontFamilies} from '../constants/fonts';
@@ -16,8 +17,8 @@ import {
 } from '../components/PlayerControls';
 import {useActiveTrack} from 'react-native-track-player';
 
-const imageUrl =
-  'https://ncsmusic.s3.eu-west-1.amazonaws.com/tracks/000/001/805/325x325/your-burn-1731978054-rhCAZVNaIC.png';
+import {playAmbientSound, stopAmbientSound} from '../data/ambientSounds';
+import {Modal, Pressable} from 'react-native';
 
 const PlayerScreen = () => {
   //for using the active image of the playing
@@ -25,6 +26,13 @@ const PlayerScreen = () => {
 
   const isLiked = false;
   const isMute = false;
+
+  const [isAmbientModalVisible, setIsAmbientModalVisible] = useState(false);
+
+  const toggleAmbientModal = () => {
+    setIsAmbientModalVisible(!isAmbientModalVisible);
+  };
+
   return (
     <View style={styles.maincontainer}>
       {/* Header */}
@@ -91,6 +99,50 @@ const PlayerScreen = () => {
         <PlayPauseButton />
         <NextButton />
       </View>
+
+      {/* Ambient Sound Button */}
+      <TouchableOpacity
+        style={styles.ambientSoundButton}
+        onPress={toggleAmbientModal}>
+        <Entypo
+          name={'popup'}
+          color={colors.iconSecondary}
+          size={iconSizes.lg}
+        />
+      </TouchableOpacity>
+
+      <Modal
+        transparent={true}
+        animationType="slide"
+        visible={isAmbientModalVisible}
+        onRequestClose={toggleAmbientModal}>
+        <View style={styles.modalOverlay}>
+          <View style={styles.modalContainer}>
+            <Text style={styles.modalTitle}>Select Ambient Sound</Text>
+
+            {['rain', 'thunder', 'rain2', 'fire'].map(sound => (
+              <TouchableOpacity
+                key={sound}
+                style={styles.modalOption}
+                onPress={() => {
+                  playAmbientSound(sound);
+                  toggleAmbientModal();
+                }}>
+                <Text>{sound.charAt(0).toUpperCase() + sound.slice(1)}</Text>
+              </TouchableOpacity>
+            ))}
+
+            <TouchableOpacity
+              onPress={() => {
+                console.log('Stopping Ambient Sound');
+                stopAmbientSound();
+                toggleAmbientModal();
+              }}>
+              <Text style={styles.modalStop}>Stop Ambient Sound</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
     </View>
   );
 };
@@ -167,5 +219,45 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: spacing.xl,
     padding: spacing.xl,
+  },
+  ambientSoundButton: {
+    position: 'absolute',
+    bottom: spacing.xl,
+    right: spacing.xl,
+    borderRadius: 50,
+    padding: spacing.xl,
+    elevation: 5,
+  },
+
+  modalOverlay: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)', // translucent dark overlay
+  },
+  modalContainer: {
+    backgroundColor: colors.background,
+    padding: 20,
+    borderRadius: 10,
+    width: '80%',
+    elevation: 10,
+    shadowColor: '#000',
+    shadowOffset: {width: 0, height: 2},
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+  },
+  modalTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 10,
+    textAlign: 'center',
+  },
+  modalOption: {
+    paddingVertical: 10,
+  },
+  modalStop: {
+    color: 'red',
+    marginTop: 20,
+    textAlign: 'center',
   },
 });
