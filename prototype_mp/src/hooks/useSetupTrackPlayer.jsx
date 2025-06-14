@@ -16,8 +16,13 @@ const setupPlayer = async () => {
       Capability.SkipToPrevious,
       Capability.Stop,
     ],
-    //yo chai for notification bar ma dekhauna use hunxa
-    compactCapabilities: [Capability.Play, Capability.Pause],
+    //yo chai for notification bar ma dekhauna use hunxa, kun kun icon haru dekhaune vanda play pause etc
+    compactCapabilities: [
+      Capability.Play,
+      Capability.Pause,
+      Capability.SkipToNext,
+      Capability.SkipToPrevious,
+    ],
   });
   //by default when song is played kati volue hunxa
   await TrackPlayer.setVolume(0.5);
