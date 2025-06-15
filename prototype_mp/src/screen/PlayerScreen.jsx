@@ -15,7 +15,7 @@ import {
   PlayPauseButton,
   PreviousButton,
 } from '../components/PlayerControls';
-import {useActiveTrack} from 'react-native-track-player';
+import TrackPlayer, {useActiveTrack} from 'react-native-track-player';
 
 import {playAmbientSound, stopAmbientSound} from '../data/ambientSounds';
 import {Modal, Pressable} from 'react-native';
@@ -25,12 +25,18 @@ const PlayerScreen = () => {
   const activeTrack = useActiveTrack();
 
   const isLiked = false;
-  const isMute = false;
+  const [isMute, setIsMute] = useState(false);
 
   const [isAmbientModalVisible, setIsAmbientModalVisible] = useState(false);
 
   const toggleAmbientModal = () => {
     setIsAmbientModalVisible(!isAmbientModalVisible);
+  };
+
+  // Function to handle toggling volume. This will set the volume to 0 when muted and to 1 when unmuted
+  const handleToggleVolume = () => {
+    TrackPlayer.setVolume(isMute ? 1 : 0);
+    setIsMute(!isMute);
   };
 
   return (
@@ -62,6 +68,7 @@ const PlayerScreen = () => {
           <Text style={styles.songTitle}> {activeTrack?.title} </Text>
           <Text style={styles.artistName}> {activeTrack?.artist} </Text>
         </View>
+
         {/* Heart Button */}
         <TouchableOpacity>
           <AntDesign
@@ -75,7 +82,9 @@ const PlayerScreen = () => {
       {/* player control options like shuffle, repeat and volume  */}
       <View style={styles.playerControlContainer}>
         {/*Volume Button */}
-        <TouchableOpacity style={styles.volumeButton}>
+        <TouchableOpacity
+          style={styles.volumeButton}
+          onPress={handleToggleVolume}>
           <Feather
             name={isMute ? 'volume-x' : 'volume-1'}
             color={colors.iconSecondary}
