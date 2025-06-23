@@ -15,6 +15,9 @@ const PlayerRepeatToggle = () => {
     if (repeatMode == null) {
       return;
     }
+    // Calculate the next repeat mode based on the current mode
+    // It cycles through the repeatOrder array MODULO operater is used to wrap around the array
+    // If the current mode is the last one, it goes back to the first one
     const currentIndex = repeatOrder.indexOf(repeatMode);
     const nextIndex = (currentIndex + 1) % repeatOrder.length;
     changeRepeatMode(nextIndex);

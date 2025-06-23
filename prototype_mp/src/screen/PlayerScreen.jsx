@@ -1,5 +1,5 @@
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Feather from 'react-native-vector-icons/Feather';
@@ -19,13 +19,22 @@ import TrackPlayer, {useActiveTrack} from 'react-native-track-player';
 
 import {playAmbientSound, stopAmbientSound} from '../data/ambientSounds';
 import {Modal, Pressable} from 'react-native';
+import {useLikedSongs} from '../hooks/useLikedSongs';
 
 const PlayerScreen = () => {
   //for using the active image of the playing
   const activeTrack = useActiveTrack();
 
   const isLiked = false;
+
   const [isMute, setIsMute] = useState(false);
+  useEffect(() => {
+    setVolume();
+  }, []);
+  const setVolume = async () => {
+    const volume = await TrackPlayer.getVolume();
+    setIsMute(volume === 0 ? true : false);
+  };
 
   const [isAmbientModalVisible, setIsAmbientModalVisible] = useState(false);
 
@@ -38,6 +47,9 @@ const PlayerScreen = () => {
     TrackPlayer.setVolume(isMute ? 1 : 0);
     setIsMute(!isMute);
   };
+
+  //Function for Like/Heart Button
+  const {likedSongs, addToLiked} = useLikedSongs();
 
   return (
     <View style={styles.maincontainer}>
@@ -70,7 +82,7 @@ const PlayerScreen = () => {
         </View>
 
         {/* Heart Button */}
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => addToLiked(activeTrack)}>
           <AntDesign
             name={isLiked ? 'heart' : 'hearto'}
             color={colors.iconSecondary}
