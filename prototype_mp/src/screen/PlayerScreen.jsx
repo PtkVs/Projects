@@ -19,14 +19,20 @@ import TrackPlayer, {useActiveTrack} from 'react-native-track-player';
 
 import {playAmbientSound, stopAmbientSound} from '../data/ambientSounds';
 import {Modal, Pressable} from 'react-native';
-import {useLikedSongs} from '../hooks/useLikedSongs';
+import useLikeSongs from '../store/likeStore';
+import {useNavigation} from '@react-navigation/native';
 
 const PlayerScreen = () => {
   //for using the active image of the playing
   const activeTrack = useActiveTrack();
 
-  const isLiked = false;
+  // Navigation hook to navigate back to the previous screen
+  const navigation = useNavigation();
+  const handleGoBack = () => {
+    navigation.goBack();
+  };
 
+  //function  to check if the song is mute or not
   const [isMute, setIsMute] = useState(false);
   useEffect(() => {
     setVolume();
@@ -36,6 +42,8 @@ const PlayerScreen = () => {
     setIsMute(volume === 0 ? true : false);
   };
 
+  // State to manage the visibility of the ambient sound modal
+  // This modal will allow users to select ambient sounds like rain, thunder, etc.
   const [isAmbientModalVisible, setIsAmbientModalVisible] = useState(false);
 
   const toggleAmbientModal = () => {
@@ -49,13 +57,14 @@ const PlayerScreen = () => {
   };
 
   //Function for Like/Heart Button
-  const {likedSongs, addToLiked} = useLikedSongs();
+  const {likedSongs, addToLiked} = useLikeSongs();
+  const isLiked = likedSongs.some(song => song.id === activeTrack?.id);
 
   return (
     <View style={styles.maincontainer}>
       {/* Header */}
       <View style={styles.headerContainer}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={handleGoBack}>
           <AntDesign
             name={'arrowleft'}
             style={styles.arrowButton}

@@ -6,8 +6,16 @@ import StackNavigation from './src/navigation/StackNavigation';
 import DrawerNavigator from './src/navigation/DrawerNavigator';
 import TrackPlayer from 'react-native-track-player';
 import {useSetupTrackPlayer} from './src/hooks/useSetupTrackPlayer';
+import useLikeSongs from './src/store/likeStore';
 
 const App = () => {
+  const {loadLikedSongs} = useLikeSongs();
+
+  // 🔒 Ensures liked songs are loaded when app mounts
+  useEffect(() => {
+    loadLikedSongs();
+  }, []);
+
   const onLoad = () => {
     console.log('TrackPlayer loaded');
   };
